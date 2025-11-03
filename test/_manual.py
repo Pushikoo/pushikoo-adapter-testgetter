@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from pushikoo_adapter_testgetter import TestGetter
 
 TestAdapterClass = TestGetter
-TestAdapterClassConfig, TestAdapterInstanceConfig = get_adapter_config_types(
+TestAdapterConfig, TestAdapterInstanceConfig = get_adapter_config_types(
     TestAdapterClass
 )
 
@@ -15,8 +15,8 @@ class MockCtx(AdapterFrameworkContext):
     """Simulated framework context"""
 
     @staticmethod
-    def get_class_config():
-        return TestAdapterClassConfig()
+    def get_config():
+        return TestAdapterConfig()
 
     @staticmethod
     def get_instance_config():

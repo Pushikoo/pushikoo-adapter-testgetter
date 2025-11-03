@@ -1,14 +1,14 @@
 import time
 
-from pushikoo_interface import Detail, Getter, GetterClassConfig, GetterInstanceConfig
+from pushikoo_interface import Detail, Getter, GetterConfig, GetterInstanceConfig
 
 from pushikoo_adapter_testgetter.api import MockAPI
-from pushikoo_adapter_testgetter.config import ClassConfig, InstanceConfig
+from pushikoo_adapter_testgetter.config import AdapterConfig, InstanceConfig
 
 
 class TestGetter(
     Getter[
-        ClassConfig,  # If you don't have any configuration, you can just use GetterClassConfig
+        AdapterConfig,  # If you don't have any configuration, you can just use GetterConfig
         InstanceConfig,  # If you don't have any configuration, you can just use GetterInstanceConfig
     ]
 ):

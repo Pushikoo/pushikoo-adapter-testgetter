@@ -30,7 +30,7 @@ def adapter_env(tmp_path_factory):
         pytest.skip(f"No entry point found for {project}")
 
     UnderTestAdapterClass = ep.load()
-    ClassCfg, InstCfg = get_adapter_config_types(UnderTestAdapterClass)
+    AdapterCfg, InstCfg = get_adapter_config_types(UnderTestAdapterClass)
 
     class MockCtx(AdapterFrameworkContext):
         storage_base_path = tmp_path_factory.mktemp("adapter_storage")
@@ -40,8 +40,8 @@ def adapter_env(tmp_path_factory):
             return {"http": "http://127.0.0.1:7890", "https": "http://127.0.0.1:7890"}
 
         @staticmethod
-        def get_class_config():
-            return ClassCfg()
+        def get_config():
+            return AdapterCfg()
 
         @staticmethod
         def get_instance_config():

@@ -1,12 +1,12 @@
-from pushikoo_interface import GetterClassConfig, GetterInstanceConfig
+from pushikoo_interface import GetterConfig, GetterInstanceConfig
 from pydantic import BaseModel, Field
 
-# GetterClassConfig and GetterInstanceConfig inherit from pydantic.BaseModel,
+# GetterConfig and GetterInstanceConfig inherit from pydantic.BaseModel,
 # so when defining your own ClassConfig / InstanceConfig,
 # you are essentially defining a BaseModel and can fully use all BaseModel features.
 
 
-class ClassConfig(GetterClassConfig):
+class AdapterConfig(GetterConfig):
     class GetListOption(BaseModel):
         count: int = Field(default=2, description="Number of items to get")
 
