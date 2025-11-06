@@ -1,5 +1,6 @@
 import time
 
+from loguru import logger
 from pushikoo_interface import Detail, Getter, GetterConfig, GetterInstanceConfig
 
 from pushikoo_adapter_testgetter.api import MockAPI
@@ -25,6 +26,10 @@ class TestGetter(
             # Framework provides proxies via ctx
             proxies=self.ctx.get_proxies(),  # {"http": "http://127.0.0.1:7890", "https": "http://127.0.0.1:7890"}
         )
+        self.identifier  # Identifier
+        logger.debug(
+            f"{self.instance_name} initialized"
+        )  # We recommend to use loguru for logging
 
     def timeline(self) -> list[str]:
         # Return list of message id.
