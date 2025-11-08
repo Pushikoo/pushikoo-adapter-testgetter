@@ -32,12 +32,12 @@ class TestGetter(
         )  # We recommend to use loguru for logging
 
     def timeline(self) -> list[str]:
-        # Return list of message id.
+        # Return list of message identifiers.
         return self.api.get_list(self.config.get_list_option.count)
 
-    def detail(self, id_: str) -> Detail:
+    def detail(self, identifier: str) -> Detail:
         # Return detail of message.
-        post = self.api.get_post(id_)
+        post = self.api.get_post(identifier)
 
         return Detail(
             ts=post["timestamp"],
@@ -50,8 +50,8 @@ class TestGetter(
             extra_detail=[post["ip_location"], post["author_statement"]],
         )
 
-    def details(self, ids: list[str]) -> Detail:
-        """Get detail of specific ids as a single Detail.
+    def details(self, identifiers: list[str]) -> Detail:
+        """Get detail of specific identifiers as a single Detail.
 
         Different types of messages have different semantic aggregation granularity
         - Some messages (such as long-content game posts) can only be processed separately;
@@ -61,7 +61,7 @@ class TestGetter(
         This method is not enforced, and if it is not implemented, it will fallback to `detail`.
         """
 
-        posts = [self.api.get_post(i) for i in ids]
+        posts = [self.api.get_post(i) for i in identifiers]
 
         content = "\n".join(p["content"] for p in posts)
         ts = int(time.time())
