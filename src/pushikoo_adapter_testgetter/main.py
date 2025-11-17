@@ -1,9 +1,9 @@
 import time
 
 from loguru import logger
-from pushikoo_interface import Detail, Getter, GetterConfig, GetterInstanceConfig
+from pushikoo_interface import Detail, Getter
 
-from pushikoo_adapter_testgetter.api import MockAPI
+from pushikoo_adapter_testgetter.api import MockAPIClient
 from pushikoo_adapter_testgetter.config import AdapterConfig, InstanceConfig
 
 
@@ -18,7 +18,7 @@ class TestGetter(
     # Framework will do it.
 
     def __init__(self) -> None:
-        self.api = MockAPI(
+        self.api = MockAPIClient(
             token=self.instance_config.token,
             userid=self.instance_config.userid,
             delay=self.config.mockapi_delay,
@@ -26,9 +26,8 @@ class TestGetter(
             # Framework provides proxies via ctx
             proxies=self.ctx.get_proxies(),  # {"http": "http://127.0.0.1:7890", "https": "http://127.0.0.1:7890"}
         )
-        self.identifier  # Identifier
         logger.debug(
-            f"{self.instance_name} initialized"
+            f"{self.adapter_name}.{self.identifier} initialized"
         )  # We recommend to use loguru for logging
 
     def timeline(self) -> list[str]:
@@ -70,7 +69,7 @@ class TestGetter(
         author_name = ", ".join(
             p.get("username", "") for p in posts if p.get("username")
         )
-        url = [u for p in posts for u in p.get("url", [])]
+        url = [p.get("url") for p in posts if p.get("url")]
         image = [img for p in posts for img in p.get("picture", [])]
 
         return Detail(

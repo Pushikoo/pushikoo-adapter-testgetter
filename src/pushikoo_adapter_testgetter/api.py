@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 
 
-class MockAPI:  # This class is used to mock an api.
+class MockAPIClient:  # This class is used to mock an api.
     def __init__(self, userid, token, delay, proxies) -> None:
         self._data = {}
         self.userid = userid
@@ -13,7 +13,7 @@ class MockAPI:  # This class is used to mock an api.
 
     def _generate_post(self):
         # Generate a 12-digit alphanumeric mixture
-        id = "".join(random.choices(string.ascii_letters + string.digits, k=7))
+        id = "".join(random.choices(string.ascii_letters + string.digits, k=64))
         userid = "".join(random.choices(string.ascii_letters + string.digits, k=7))
         title = "Title" + "".join(random.choices(string.ascii_letters, k=5))
         # Get the current date and time

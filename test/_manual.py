@@ -1,7 +1,6 @@
 from pathlib import Path
 
-from pushikoo_interface import AdapterFrameworkContext, Detail, get_adapter_config_types
-from pydantic import BaseModel
+from pushikoo_interface import AdapterFrameworkContext, get_adapter_config_types
 
 from pushikoo_adapter_testgetter import TestGetter
 
@@ -33,7 +32,7 @@ class FrameworkSimulator:
             "http": "http://127.0.0.1:7890",
             "https": "http://127.0.0.1:7890",
         }
-        self.ctx.storage_base_path = Path(f".cache/adapter/storage")
+        self.ctx.storage_base_path = Path(".cache/adapter/storage")
 
     def run(self):
         print("=== Framework Booting Adapter ===")
