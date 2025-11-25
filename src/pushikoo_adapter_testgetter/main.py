@@ -1,7 +1,7 @@
 import time
 
 from loguru import logger
-from pushikoo_interface import Detail, Getter
+from pushikoo_interface import Detail, Getter, GetterConfig, GetterInstanceConfig  # noqa: F401
 
 from pushikoo_adapter_testgetter.api import MockAPIClient
 from pushikoo_adapter_testgetter.config import AdapterConfig, InstanceConfig
@@ -13,9 +13,9 @@ class TestGetter(
         InstanceConfig,  # If you don't have any configuration, you can just use GetterInstanceConfig
     ]
 ):
-    # This is your adapter.
-    # You should not write any logic to handle errors to avoid a function failing to return.
-    # Framework will do it.
+    # This is your Adapter main implementation.
+    # If a fatal error occurs (cannot be recovered properly), do not capture it.
+    # Exceptions should be raised directly, with the framework responsible for final error handling and logging.
 
     def __init__(self) -> None:
         self.api = MockAPIClient(
