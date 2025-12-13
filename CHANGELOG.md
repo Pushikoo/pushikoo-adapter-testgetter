@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/Pushikoo/pushikoo-adapter-testgetter/compare/v0.1.0...v0.1.1) (2025-12-13)
+
+
+### Miscellaneous Chores
+
+* release trigger ([69a84f4](https://github.com/Pushikoo/pushikoo-adapter-testgetter/commit/69a84f410fe84c0bee2e916d6bef360aad240d0e))
+
 ## [0.1.0](https://github.com/Pushikoo/pushikoo-adapter-testgetter/compare/v0.0.1...v0.1.0) (2025-11-17)
 
 
