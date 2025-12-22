@@ -18,7 +18,13 @@ class TestGetter(
     # Exceptions should be raised directly, with the framework responsible for final error handling and logging.
 
     def __init__(self) -> None:
-        self.api = MockAPIClient(
+        logger.debug(
+            f"{self.adapter_name}.{self.identifier} initialized"
+        )  # We recommend to use loguru for logging
+
+    def _create_api(self) -> MockAPIClient:
+        """Create API client instance with current config (supports hot-reload)."""
+        return MockAPIClient(
             token=self.instance_config.token,
             userid=self.instance_config.userid,
             delay=self.config.mockapi_delay,
@@ -26,17 +32,16 @@ class TestGetter(
             # Framework provides proxies via ctx
             proxies=self.ctx.get_proxies(),  # {"http": "http://127.0.0.1:7890", "https": "http://127.0.0.1:7890"}
         )
-        logger.debug(
-            f"{self.adapter_name}.{self.identifier} initialized"
-        )  # We recommend to use loguru for logging
 
     def timeline(self) -> list[str]:
         # Return list of message identifiers.
-        return self.api.get_list(self.config.get_list_option.count)
+        api = self._create_api()
+        return api.get_list(self.config.get_list_option.count)
 
     def detail(self, identifier: str) -> Detail:
         # Return detail of message.
-        post = self.api.get_post(identifier)
+        api = self._create_api()
+        post = api.get_post(identifier)
 
         return Detail(
             ts=post["timestamp"],
@@ -60,7 +65,8 @@ class TestGetter(
         This method is not enforced, and if it is not implemented, it will fallback to `detail`.
         """
 
-        posts = [self.api.get_post(i) for i in identifiers]
+        api = self._create_api()
+        posts = [api.get_post(i) for i in identifiers]
 
         content = "\n".join(p["content"] for p in posts)
         ts = int(time.time())
