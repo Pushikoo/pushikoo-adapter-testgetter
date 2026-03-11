@@ -1,7 +1,14 @@
 import time
 
+from fastapi import APIRouter
+from fastapi.responses import HTMLResponse
 from loguru import logger
-from pushikoo_interface import Detail, Getter, GetterConfig, GetterInstanceConfig  # noqa: F401
+from pushikoo_interface import (  # noqa: F401
+    Detail,
+    Getter,
+    GetterConfig,
+    GetterInstanceConfig,
+)
 
 from pushikoo_adapter_testgetter.api import MockAPIClient
 from pushikoo_adapter_testgetter.config import AdapterConfig, InstanceConfig
@@ -21,6 +28,37 @@ class TestGetter(
         logger.debug(
             f"{self.adapter_name}.{self.identifier} initialized"
         )  # We recommend to use loguru for logging
+
+    @classmethod
+    def get_adapter_router(cls) -> APIRouter:
+        router = APIRouter()
+
+        @router.get("/", response_class=HTMLResponse)
+        def adapter_home() -> str:
+            return """
+            <html>
+                <body>
+                    <h1>This is the adapter home page</h1>
+                </body>
+            </html> 
+            """
+
+        return router
+
+    def get_instance_router(self) -> APIRouter:
+        router = APIRouter()
+
+        @router.get("/", response_class=HTMLResponse)
+        def instance_home() -> str:
+            return """
+            <html>
+                <body>
+                    <h1>This is the instance home page</h1>
+                </body>
+            </html> 
+            """
+
+        return router
 
     def _create_api(self) -> MockAPIClient:
         """Create API client instance with current config (supports hot-reload)."""

@@ -8,7 +8,7 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "Operating System :: OS Independent",
 ]
-dependencies = ["pushikoo-interface>=0.2.0", "requests", "loguru"]
+dependencies = ["fastapi", "pushikoo-interface>=0.2.0", "requests", "loguru"]
 description = "TestGetter for pushikoo-adapter development as a template."
 name = "pushikoo-adapter-testgetter"
 readme = "README.md"
@@ -16,7 +16,7 @@ requires-python = ">=3.10"
 dynamic = ['version']
 
 [project.optional-dependencies]
-dev = ["ruff", "pytest"]
+dev = ["ruff", "pytest", "httpx"]
 
 [project.urls]
 "Homepage" = "https://github.com/Pushikoo/pushikoo-adapter-testgetter"
