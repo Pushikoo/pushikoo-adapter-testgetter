@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/Pushikoo/pushikoo-adapter-testgetter/compare/v0.1.2...v0.2.0) (2026-03-11)
+
+
+### Features
+
+* add FastAPI router support for HTTP endpoints ([acbddc5](https://github.com/Pushikoo/pushikoo-adapter-testgetter/commit/acbddc550e2195ff17c32bd3bc154a9517e2d841))
+
 ## [0.1.2](https://github.com/Pushikoo/pushikoo-adapter-testgetter/compare/v0.1.1...v0.1.2) (2025-12-22)
 
 
