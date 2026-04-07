@@ -1,6 +1,6 @@
 import time
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi.responses import HTMLResponse
 from loguru import logger
 from pushikoo_interface import (  # noqa: F401
@@ -40,8 +40,14 @@ class TestGetter(
                 <body>
                     <h1>This is the adapter home page</h1>
                 </body>
-            </html> 
+            </html>
             """
+
+        # Example: protect a single route with verify_token.
+        # ctx.verify_token is injected by the framework and accepts Bearer tokens or cookies.
+        @router.get("/protected")
+        def protected(_: str = Depends(cls.ctx.verify_token)) -> dict:
+            return {"message": "This is protected content."}
 
         return router
 
@@ -55,8 +61,14 @@ class TestGetter(
                 <body>
                     <h1>This is the instance home page</h1>
                 </body>
-            </html> 
+            </html>
             """
+
+        # Example: protect a single route with verify_token.
+        # Use per-route Depends when only specific routes need auth.
+        @router.get("/protected")
+        def protected(_: str = Depends(self.ctx.verify_token)) -> dict:
+            return {"message": "This is protected content."}
 
         return router
 
