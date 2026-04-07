@@ -69,6 +69,9 @@ class TestGetter(
             # You can use self.ctx to access to framework context.
             # Framework provides proxies via ctx
             proxies=self.ctx.get_proxies(),  # {"http": "http://127.0.0.1:7890", "https": "http://127.0.0.1:7890"}
+            # ctx also provides base URLs for constructing absolute links:
+            # self.ctx.adapter_base_url   -> e.g. "http://127.0.0.1:11589/ext/adapters/pushikoo-adapter-testgetter"
+            # self.ctx.instance_base_url  -> e.g. "http://127.0.0.1:11589/ext/adapter_instances/pushikoo-adapter-testgetter.test"
         )
 
     def timeline(self) -> list[str]:
