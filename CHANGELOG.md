@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/Pushikoo/pushikoo-adapter-testgetter/compare/v0.2.0...v0.2.1) (2026-04-07)
+
+
+### Documentation
+
+* add inline comments for ctx base URL properties ([75b429b](https://github.com/Pushikoo/pushikoo-adapter-testgetter/commit/75b429b5639a277fa0a49104d1ff83a81de8ecd7))
+
 ## [0.2.0](https://github.com/Pushikoo/pushikoo-adapter-testgetter/compare/v0.1.2...v0.2.0) (2026-03-11)
 
 
