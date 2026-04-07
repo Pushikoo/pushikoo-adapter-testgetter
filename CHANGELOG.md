@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/Pushikoo/pushikoo-adapter-testgetter/compare/v0.2.1...v0.3.0) (2026-04-07)
+
+
+### Features
+
+* add example protected routes using verify_token dependency ([f1255b3](https://github.com/Pushikoo/pushikoo-adapter-testgetter/commit/f1255b30f89b8df68d79682b48a3b66899681440))
+
 ## [0.2.1](https://github.com/Pushikoo/pushikoo-adapter-testgetter/compare/v0.2.0...v0.2.1) (2026-04-07)
 
 
